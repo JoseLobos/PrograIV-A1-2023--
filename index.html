@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Pagina Web</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container" id="app">
+        <div class="row">
+            <div class="col-12 col-md-6">
+                <div class="card">
+                    <div class="card-header">REGISTRO DE ALUMNOS</div>
+                    <div class="card-body">
+                        <form id="frmAlumno" @reset.prevent="nuevoAlumno" v-on:submit.prevent="guardarAlumno">
+                            <div class="row p-1">
+                                <div class="col-5 col-md-4">
+                                    <label for="txtCodigoAlumno">Codigo:</label>
+                                </div>
+                                <div class="col-7 col-md-6">
+                                    <input required pattern="[0-9]{3}" 
+                                        title="Ingrese un codigo de docente de 3 digitos"
+                                            v-model="alumno.codigo" type="text" class="form-control" name="txtCodigoAlumno" id="txtCodigoAlumno">
+                                </div>
+                            </div>
+                            <div class="row p-1">
+                                <div class="col-5 col-md-4">
+                                    <label for="txtNombreAlumno">Nombre:</label>
+                                </div>
+                                <div class="col-7 col-md-6">
+                                    <input required pattern="[A-Za-zÑñáéíóú ]{3,75}"
+                                        v-model="alumno.nombre" type="text" class="form-control" name="txtNombreAlumno" id="txtNombreAlumno">
+                                </div>
+                            </div>
+                            <div class="row p-1">
+                                <div class="col col-md-5">Fecha de Nacimiento:</div>
+                                <div class="col-7 col-md-5">
+                                    <input title="Ingrese la fecha de nacimiento" v-model="alumno.fechaNacimiento" required type="date" class="form-control">
+                                </div>
+                            </div>
+                            <div class="row p-1">
+                                <div class="col-5 col-md-4">Direccion:</div>
+                                <div class="col col-md-6">
+                                    <input title="Ingrese la direccion" v-model="alumno.direccion" pattern="[0-9#.A-Za-zñÑáéíóúü ]{3,100}" required type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="row p-1">
+                                <div class="col-5 col-md-4">Municipio:</div>
+                                <div class="col col-md-6">
+                                    <input title="Ingrese el municipio" v-model="alumno.municipio" pattern="[0-9#.A-Za-zñÑáéíóúü ]{3,100}" required type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="row p-1">
+                                <div class="col-5 col-md-4">Departamento:</div>
+                                <div class="col col-md-6">
+                                    <input title="Ingrese el departamento" v-model="alumno.departamento" pattern="[0-9#.A-Za-zñÑáéíóúü ]{3,100}" required type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="row p-1">
+                                <div class="col-5 col-md-4">Telefono:</div>
+                                <div class="col col-md-6">
+                                    <input title="Ingrese el tel" v-model="alumno.telefono" pattern="[0-9]{4}-[0-9]{4}" required type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="row p-1">
+                                <div class="col-5 col-md-4">DUI:</div>
+                                <div class="col col-md-6">
+                                    <input title="Ingrese el DUI" v-model="alumno.dui" pattern="[0-9]{8}-[0-9]{1}" required type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="row p-1">
+                                <div class="col-5 col-md-4">Sexo:</div>
+                                <div class="col col-md-6">
+                                    <input title="Ingrese el sexo" v-model="alumno.sexo" pattern="[0-9#.A-Za-zñÑáéíóúü ]{3,100}" required type="text" class="form-control">
+                                </div>
+                            </div>
+                            
+                            <div class="row p-1">
+                                <div class="col-3 col-md-3">
+                                    <input class="btn btn-primary" type="submit" 
+                                        value="Guardar">
+                                </div>
+                                <div class="col-3 col-md-3">
+                                    <input class="btn btn-warning" type="reset" value="Nuevo">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6">
+                <div class="card" >
+                    <div class="card-header">LISTADO DE ALUMNOS</div>
+                    <div class="card-body">
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th style="color: white">BUSCAR:</th>
+                                    <th colspan="2"><input type="text" class="form-control" v-model="buscar"
+                                        @keyup="listarAlumnos()"
+                                        placeholder="Buscar por codigo o nombre"></th>
+                                </tr>
+                                <tr>
+                                    <th style="color: white;">CODIGO</th> 
+                                    <th style="color: white" colspan="2">NOMBRE</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr v-for="alumno in alumnos" :key="alumno.idAlumno" @click="modificarAlumno(alumno)" >
+                                    <td>{{ alumno.codigo }}</td>
+                                    <td>{{ alumno.nombre }}</td>
+                                    <td><button class="btn btn-danger" @click="eliminarAlumno(alumno)">ELIMINAR</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+         const { createApp } = Vue;
+        createApp({
+            data() {
+                return {
+                    accion:'nuevo',
+                    buscar: '',
+                    alumnos: [],
+                    alumno:{
+                        idAlumno : '',
+                        codigo : '',
+                        nombre : '',
+                        
+                        direccion : '',
+                        municipio : '',
+                        departamento : '',
+                        telefono : '',
+                        dui : '',
+                        sexo : '',
+                    }
+                }
+            },
+            methods:{
+                guardarAlumno(){
+                    this.listarAlumnos();
+                    if(this.accion==='nuevo'){
+                        this.alumno.idAlumno = new Date().getTime().toString(16);
+                        this.alumnos.push( JSON.parse( JSON.stringify(this.alumno) ) );
+                    }else if(this.accion==='modificar'){
+                        let index = this.alumnos.findIndex(alumno=>alumno.idAlumno==this.alumno.idAlumno);
+                        this.alumnos[index] = JSON.parse( JSON.stringify(this.alumno) );
+                    }else if(this.accion==='eliminar'){
+                        let index = this.alumnos.findIndex(alumno=>alumno.idAlumno==this.alumno.idAlumno);
+                        this.alumnos.splice(index,1);
+                    }
+                    localStorage.setItem("alumnos", JSON.stringify(this.alumnos) );
+                    this.nuevoAlumno();
+                },
+                eliminarAlumno(alumno){
+                    if( confirm(`Esta seguro de eliminar a ${alumno.nombre}?`) ){
+                        this.accion='eliminar';
+                        this.alumno=alumno;
+                        this.guardarAlumno();
+                    }
+                },
+                nuevoAlumno(){
+                    this.accion = 'nuevo';
+                    this.alumno.idAlumno = '';
+                    this.alumno.codigo = '';
+                    this.alumno.nombre = '';
+                    
+                    this.alumno.direccion = '';
+                    this.alumno.municipio = '';
+                    this.alumno.departamento = '';
+                    this.alumno.telefono = '';
+                    this.alumno.dui = '';
+                    this.alumno.sexo = '';
+                    
+                },
+                modificarAlumno(alumno){
+                    this.accion = 'modificar';
+                    this.alumno = alumno;
+                },
+                listarAlumnos(){
+                    this.alumnos = JSON.parse( localStorage.getItem('alumnos') || "[]" )
+                        .filter(alumno=>alumno.nombre.toLowerCase().indexOf(this.buscar.toLowerCase())>-1);
+                }
+            },
+            created(){
+                this.listarAlumnos();
+            }
+        }).mount('#app');
+    </script>
+</body>
+</html>
+
+
