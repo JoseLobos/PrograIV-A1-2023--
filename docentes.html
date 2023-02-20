@@ -14,68 +14,68 @@
         <div class="row">
             <div class="col-12 col-md-6">
                 <div class="card">
-                    <div class="card-header">REGISTRO DE ALUMNOS</div>
+                    <div class="card-header">REGISTRO DE DOCENTE</div>
                     <div class="card-body">
-                        <form id="frmAlumno" @reset.prevent="nuevoAlumno" v-on:submit.prevent="guardarAlumno">
+                        <form id="frmDocente" @reset.prevent="nuevoDocente" v-on:submit.prevent="guardarDocente">
                             <div class="row p-1">
                                 <div class="col-5 col-md-4">
-                                    <label for="txtCodigoAlumno">Codigo:</label>
+                                    <label for="txtCodigoDocente">Codigo:</label>
                                 </div>
                                 <div class="col-7 col-md-6">
                                     <input required pattern="[0-9]{3}" 
                                         title="Ingrese un codigo de docente de 3 digitos"
-                                            v-model="alumno.codigo" type="text" class="form-control" name="txtCodigoAlumno" id="txtCodigoAlumno">
+                                            v-model="docente.codigo" type="text" class="form-control" name="txtCodigoDocente" id="txtCodigoDocente">
                                 </div>
                             </div>
                             <div class="row p-1">
                                 <div class="col-5 col-md-4">
-                                    <label for="txtNombreAlumno">Nombre:</label>
+                                    <label for="txtNombreDocente">Nombre:</label>
                                 </div>
                                 <div class="col-7 col-md-6">
                                     <input required pattern="[A-Za-zÑñáéíóú ]{3,75}"
-                                        v-model="alumno.nombre" type="text" class="form-control" name="txtNombreAlumno" id="txtNombreAlumno">
+                                        v-model="docente.nombre" type="text" class="form-control" name="txtNombreDocente" id="txtNombreDocente">
                                 </div>
                             </div>
                             <div class="row p-1">
                                 <div class="col col-md-5">Fecha de Nacimiento:</div>
                                 <div class="col-7 col-md-5">
-                                    <input title="Ingrese la fecha de nacimiento" v-model="alumno.fechaNacimiento" required type="date" class="form-control">
+                                    <input title="Ingrese la fecha de nacimiento" v-model="docente.fechaNacimiento" required type="date" class="form-control">
                                 </div>
                             </div>
                             <div class="row p-1">
                                 <div class="col-5 col-md-4">Direccion:</div>
                                 <div class="col col-md-6">
-                                    <input title="Ingrese la direccion" v-model="alumno.direccion" pattern="[0-9#.A-Za-zñÑáéíóúü ]{3,100}" required type="text" class="form-control">
+                                    <input title="Ingrese la direccion" v-model="docente.direccion" pattern="[0-9#.A-Za-zñÑáéíóúü ]{3,100}" required type="text" class="form-control">
                                 </div>
                             </div>
                             <div class="row p-1">
                                 <div class="col-5 col-md-4">Municipio:</div>
                                 <div class="col col-md-6">
-                                    <input title="Ingrese el municipio" v-model="alumno.municipio" pattern="[0-9#.A-Za-zñÑáéíóúü ]{3,100}" required type="text" class="form-control">
+                                    <input title="Ingrese el municipio" v-model="docente.municipio" pattern="[0-9#.A-Za-zñÑáéíóúü ]{3,100}" required type="text" class="form-control">
                                 </div>
                             </div>
                             <div class="row p-1">
                                 <div class="col-5 col-md-4">Departamento:</div>
                                 <div class="col col-md-6">
-                                    <input title="Ingrese el departamento" v-model="alumno.departamento" pattern="[0-9#.A-Za-zñÑáéíóúü ]{3,100}" required type="text" class="form-control">
+                                    <input title="Ingrese el departamento" v-model="docente.departamento" pattern="[0-9#.A-Za-zñÑáéíóúü ]{3,100}" required type="text" class="form-control">
                                 </div>
                             </div>
                             <div class="row p-1">
                                 <div class="col-5 col-md-4">Telefono:</div>
                                 <div class="col col-md-6">
-                                    <input title="Ingrese el tel" v-model="alumno.telefono" pattern="[0-9]{4}-[0-9]{4}" required type="text" class="form-control">
+                                    <input title="Ingrese el tel" v-model="docente.telefono" pattern="[0-9]{4}-[0-9]{4}" required type="text" class="form-control">
                                 </div>
                             </div>
                             <div class="row p-1">
                                 <div class="col-5 col-md-4">DUI:</div>
                                 <div class="col col-md-6">
-                                    <input title="Ingrese el DUI" v-model="alumno.dui" pattern="[0-9]{8}-[0-9]{1}" required type="text" class="form-control">
+                                    <input title="Ingrese el DUI" v-model="docente.dui" pattern="[0-9]{8}-[0-9]{1}" required type="text" class="form-control">
                                 </div>
                             </div>
                             <div class="row p-1">
                                 <div class="col-5 col-md-4">Sexo:</div>
                                 <div class="col col-md-6">
-                                    <input title="Ingrese el sexo" v-model="alumno.sexo" pattern="[0-9#.A-Za-zñÑáéíóúü ]{3,100}" required type="text" class="form-control">
+                                    <input title="Ingrese el sexo" v-model="docente.sexo" pattern="[0-9#.A-Za-zñÑáéíóúü ]{3,100}" required type="text" class="form-control">
                                 </div>
                             </div>
                             <div class="row p-1">
@@ -93,14 +93,14 @@
             </div>
             <div class="col-12 col-md-6">
                 <div class="card">
-                    <div class="card-header">LISTADO DE ALUMNOS</div>
+                    <div class="card-header">LISTADO DE DOCENTES</div>
                     <div class="card-body">
                         <table class="table table-bordered table-hover">
                             <thead>
                                 <tr>
                                     <th>BUSCAR:</th>
                                     <th colspan="2"><input type="text" class="form-control" v-model="buscar"
-                                        @keyup="listarAlumnos()"
+                                        @keyup="listarDocentes()"
                                         placeholder="Buscar por codigo o nombre"></th>
                                 </tr>
                                 <tr>
@@ -109,10 +109,10 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr v-for="alumno in alumnos" :key="alumno.idAlumno" @click="modificarAlumno(alumno)" >
-                                    <td>{{ alumno.codigo }}</td>
-                                    <td>{{ alumno.nombre }}</td>
-                                    <td><button class="btn btn-danger" @click="eliminarAlumno(alumno    )">ELIMINAR</button></td>
+                                <tr v-for="docente in docentes" :key="docente.idDocente" @click="modificarDocente(docente)" >
+                                    <td>{{ docente.codigo }}</td>
+                                    <td>{{ docente.nombre }}</td>
+                                    <td><button class="btn btn-danger" @click="eliminarDocente(docente)">ELIMINAR</button></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -131,9 +131,9 @@
                     db:'',
                     accion:'nuevo',
                     buscar: '',
-                    alumnos: [],
-                    alumno:{
-                        idAlumno : '',
+                    docentes: [],
+                    docente:{
+                        idDocente : '',
                         codigo : '',
                         nombre : '',
                         
@@ -147,48 +147,48 @@
                 }
             },
             methods:{
-                guardarAlumno(){
-                    let store = this.abrirStore('tblalumnos', 'readwrite');
+                guardarDocente(){
+                    let store = this.abrirStore('tbldocentes', 'readwrite');
                     if(this.accion==='nuevo'){
-                        this.alumno.idAlumno = new Date().getTime().toString(16);
+                        this.docente.idDocente = new Date().getTime().toString(16);
                     }
-                    store.put( JSON.parse(JSON.stringify(this.alumno) ) );
-                    this.listarAlumnos();
-                    this.nuevoAlumno();
+                    store.put( JSON.parse(JSON.stringify(this.docente) ) );
+                    this.listarDocentes();
+                    this.nuevoDocente();
                 },
-                eliminarAlumno(alumno){
-                    if( confirm(`Esta seguro de eliminar a ${alumno.nombre}?`) ){
-                        let store = this.abrirStore('tblalumnos', 'readwrite'),
-                            req = store.delete(alumno.idAlumno);
+                eliminarDocente(docente){
+                    if( confirm(`Esta seguro de eliminar a ${docente.nombre}?`) ){
+                        let store = this.abrirStore('tbldocentes', 'readwrite'),
+                            req = store.delete(docente.idDocente);
                         req.onsuccess = resp=>{
-                            this.listarAlumnos();
+                            this.listarDocentes();
                         };
                     }
                 },
-                nuevoAlumno(){
+                nuevoDocente(){
                     this.accion = 'nuevo';
-                    this.alumno.idAlumno = '';
-                    this.alumno.codigo = '';
-                    this.alumno.nombre = '';
+                    this.docente.idDocente = '';
+                    this.docente.codigo = '';
+                    this.docente.nombre = '';
                     
-                    this.alumno.direccion = '';
-                    this.alumno.municipio = '';
-                    this.alumno.departamento = '';
-                    this.alumno.telefono = '';
-                    this.alumno.dui = '';
-                    this.alumno.sexo = '';
+                    this.docente.direccion = '';
+                    this.docente.municipio = '';
+                    this.docente.departamento = '';
+                    this.docente.telefono = '';
+                    this.docente.dui = '';
+                    this.docente.sexo = '';
                 },
-                modificarAlumno(alumno){
+                modificarDocente(docente){
                     this.accion = 'modificar';
-                    this.alumno = alumno;
+                    this.docente = docente;
                 },
-                listarAlumnos(){
-                    let store = this.abrirStore('tblalumnos', 'readonly'),
+                listarDocentes(){
+                    let store = this.abrirStore('tbldocentes', 'readonly'),
                         data = store.getAll();
                     data.onsuccess = resp=>{
-                        this.alumnos = data.result
-                            .filter(alumno=>alumno.nombre.toLowerCase().indexOf(this.buscar.toLowerCase())>-1 ||
-                                alumno.codigo.indexOf(this.buscar)>-1);
+                        this.docentes = data.result
+                            .filter(docente=>docente.nombre.toLowerCase().indexOf(this.buscar.toLowerCase())>-1 ||
+                                docente.codigo.indexOf(this.buscar)>-1);
                     };
                 },
                 abrirStore(store, modo){
@@ -209,7 +209,7 @@
                     };
                     indexDB.onsuccess= e=>{
                         this.db = e.target.result;
-                        this.listarAlumnos();
+                        this.listarDocentes();
                     };
                     indexDB.onerror= e=>{
                         console.error( e );
