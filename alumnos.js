@@ -8,9 +8,8 @@ Vue.component('component-alumnos',{
                 idAlumno : '',
                 codigo : '',
                 nombre : '',
-                direccion : '',
                 fecha : '',
-
+                direccion : '',
                 municipio : '',
                 departamento : '',
                 telefono : '',
@@ -95,6 +94,7 @@ Vue.component('component-alumnos',{
     },
 
 
+
     template: `
         <div class="row">
             <div class="col-12 col-md-6">
@@ -114,6 +114,7 @@ Vue.component('component-alumnos',{
                                 </div>
                             </div>
 
+
                             <div class="row p-1">
                                 <div class="col-3 col-md-2">
                                     <label for="txtNombreAlumno">Nombre:</label>
@@ -123,6 +124,7 @@ Vue.component('component-alumnos',{
                                         v-model="alumno.nombre" type="text" class="form-control" name="txtNombreAlumno" id="txtNombreAlumno">
                                 </div>
                             </div>
+
 
                             <div class="row p-1">
                                 <div class="col-3 col-md-2">
@@ -134,6 +136,7 @@ Vue.component('component-alumnos',{
                                 </div>
                             </div>
 
+
                             <div class="row p-1">
                                 <div class="col-3 col-md-2">
                                     <label for="txtDireccionAlumno">Direccion:</label>
@@ -143,6 +146,7 @@ Vue.component('component-alumnos',{
                                         v-model="alumno.direccion" type="text" class="form-control" name="txtDireccionAlumno" id="txtDireccionAlumno">
                                 </div>
                             </div>
+
 
                             <div class="row p-1">
                                 <div class="col-3 col-md-2">
@@ -154,6 +158,7 @@ Vue.component('component-alumnos',{
                                 </div>
                             </div>
 
+
                             <div class="row p-1">
                                 <div class="col-3 col-md-2">
                                     <label for="txtNDepartamentoAlumno">Departamento:</label>
@@ -163,6 +168,7 @@ Vue.component('component-alumnos',{
                                         v-model="alumno.departamento" type="text" class="form-control" name="txtNDepartamentoAlumno" id="txtNDepartamentoAlumno">
                                 </div>
                             </div>
+
 
                             <div class="row p-1">
                                 <div class="col-3 col-md-2">
@@ -174,6 +180,7 @@ Vue.component('component-alumnos',{
                                 </div>
                             </div>
 
+
                             <div class="row p-1">
                             <div class="col-3 col-md-3">
                                 <label for="txtDuiAlumno">Dui:</label>
@@ -183,6 +190,7 @@ Vue.component('component-alumnos',{
                                     v-model="alumno.dui" type="text" class="form-control" name="txtDuiAlumno" id="txtDuiAlumno">
                             </div>
                         </div>
+
 
                             <div class="row p-1">
                             <div class="col-3 col-md-3">
@@ -196,6 +204,7 @@ Vue.component('component-alumnos',{
                                     </select> 
                             </div>
                         </div>
+
 
 
                             <div class="row p-1">
@@ -212,51 +221,51 @@ Vue.component('component-alumnos',{
                 </div>
             </div>
             <div class="col-12 col-md-12">
-            <div class="card">
-                <div class="card-header">LISTADO DE ALUMNOS</div>
-                <div class="card-body">
-                    <table class="table table-bordered table-hover">
-                        <thead>
-                            <tr>
-                                <th>BUSCAR:</th>
-                                <th colspan="2"><input type="text" class="form-control" v-model="buscar"
-                                    @keyup="listarAlumnos()"
-                                    placeholder="Buscar por codigo o nombre"></th>
-                            </tr>
-                            <tr>
-                                <th>CODIGO</th>
-                                <th>NOMBRE</th>
-                                <th>FECHA DE NACIMIENTO</th>
-                                <th>DIRECCION</th>
-                                <th>MUNICIPIO</th>
-                                <th>DEPARTAMENTO</th>
-                                <th>TELEFONO</th>
-                                <th>DUI</th>
-                                <th>SEXO</th>
+                <div class="card">
+                    <div class="card-header">LISTADO DE ALUMNOS</div>
+                    <div class="card-body">
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>BUSCAR:</th>
+                                    <th colspan="2"><input type="text" class="form-control" v-model="buscar"
+                                        @keyup="listarAlumnos()"
+                                        placeholder="Buscar por codigo o nombre"></th>
+                                </tr>
+                                <tr>
+                                    <th>CODIGO</th>
+                                    <th>NOMBRE</th>
+                                    <th>FECHA DE NACIMIENTO</th>
+                                    <th>DIRECCION</th>
+                                    <th>MUNICIPIO</th>
+                                    <th>DEPARTAMENTO</th>
+                                    <th>TELEFONO</th>
+                                    <th>DUI</th>
+                                    <th>SEXO</th>
 
 
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr v-for="alumnos in alumnos" :key="alumno.idAlumno" @click="modificarAlumno(alumno)" >
-                                <td>{{ alumno.codigo }}</td>
-                                <td>{{ alumno.nombre }}</td>
-                                <td>{{ alumno.fecha }}</td>
-                                <td>{{ alumno.direccion }}</td>
-                                <td>{{ alumno.municipio }}</td>
-                                <td>{{ alumno.departamento }}</td>
-                                <td>{{ alumno.telefono }}</td>
-                                <td>{{ alumno.dui }}</td>
-                                <td>{{ alumno.sexo }}</td>
 
-                                <td><button class="btn btn-danger" @click="eliminarAlumno(alumno)">ELIMINAR</button></td>
-                            </tr>
-                        </tbody>
-                    </table>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr v-for="alumno in alumnos" :key="alumno.idAlumno" @click="modificarAlumno(alumno)" >
+                                    <td>{{ alumno.codigo }}</td>
+                                    <td>{{ alumno.nombre }}</td>
+                                    <td>{{ alumno.fecha }}</td>
+                                    <td>{{ alumno.direccion }}</td>
+                                    <td>{{ alumno.municipio }}</td>
+                                    <td>{{ alumno.departamento }}</td>
+                                    <td>{{ alumno.telefono }}</td>
+                                    <td>{{ alumno.dui }}</td>
+                                    <td>{{ alumno.sexo }}</td>
+
+                                    <td><button class="btn btn-danger" @click="eliminarAlumno(alumno)">ELIMINAR</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-`
+    `
 });
-
