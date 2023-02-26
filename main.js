@@ -1,53 +1,54 @@
 var db; var app = new Vue ({
-        el: '#app',
-    
-    data: {
-        forms:{
-            docente     : {mostrar:false},
-            alumno      : {mostrar:false},
-            materia     : {mostrar:false},
-            matricula   : {mostrar:false},
-            inscripcion : {mostrar:true},
-        }
+    el: '#app',
 
-    },
-    methods:{
-        abrirFormulario(form) {
-            for (var key in this.forms) {
-                if (key !== form) {
-                    this.forms[key].mostrar = false;
-                }
-            }
-            this.forms[form].mostrar = !this.forms[form].mostrar;
-            this.$refs[form].listar();
-        },
-        
-        abrirBD(){
-            let indexDB = indexedDB.open('db_sistema_academico',1);
-            indexDB.onupgradeneeded=e=>{
-                let req = e.target.result,
-                    tbldocente = req.createObjectStore('tbldocentes', {keyPath:'idDocente'}),
-                    tblalumno = req.createObjectStore('tblalumnos',{keyPath:'idAlumno'}),
-                    tblmateria = req.createObjectStore('tblmaterias',{keyPath:'idMateria'});
-                    tblinscripcion = req.createObjectStore('tblinscritos',{keyPath:'idInscrito'});
-
-                
-                
-                tbldocente.createIndex('idDocente', 'idDocente', {unique:true});
-                tblalumno.createIndex('idAlumno', 'idAlumno', {unique:true});
-                tblmateria.createIndex('idMateria', 'idMateria', {unique:true});
-                tblinscripcion.createIndex('idInscrito', 'idInscrito', {unique:true});
-            };
-            indexDB.onsuccess= e=>{
-                db = e.target.result;
-            };
-            indexDB.onerror= e=>{
-                console.error( e );
-            };
-        }, 
-    },
-    created() {
-        this.abrirBD();
+data: {
+    forms:{
+        docente     : {mostrar:false},
+        alumno      : {mostrar:false},
+        materia     : {mostrar:false},
+        matricula   : {mostrar:false},
+        inscribir : {mostrar:true},
     }
+
+},
+methods:{
+    abrirFormulario(form) {
+        for (var key in this.forms) {
+            if (key !== form) {
+                this.forms[key].mostrar = false;
+            }
+        }
+        this.forms[form].mostrar = !this.forms[form].mostrar;
+        this.$refs[form].listar();
+    },
+    
+    abrirBD(){
+        let indexDB = indexedDB.open('db_sistema_academico',1);
+        indexDB.onupgradeneeded=e=>{
+            let req = e.target.result,
+                tbldocente = req.createObjectStore('tbldocentes', {keyPath:'idDocente'}),
+                tblalumno = req.createObjectStore('tblalumnos',{keyPath:'idAlumno'}),
+                tblmateria = req.createObjectStore('tblmaterias',{keyPath:'idMateria'});
+                tblinscripcion = req.createObjectStore('tblinscritos',{keyPath:'idInscrito'});
+
+            
+            
+            tbldocente.createIndex('idDocente', 'idDocente', {unique:true});
+            tblalumno.createIndex('idAlumno', 'idAlumno', {unique:true});
+            tblmateria.createIndex('idMateria', 'idMateria', {unique:true});
+            tblinscripcion.createIndex('idInscrito', 'idInscrito', {unique:true});
+        };
+        indexDB.onsuccess= e=>{
+            db = e.target.result;
+        };
+        indexDB.onerror= e=>{
+            console.error( e );
+        };
+    }, 
+},
+created() {
+    this.abrirBD();
+}
 });
+
 

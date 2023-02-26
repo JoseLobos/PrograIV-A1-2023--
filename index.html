@@ -26,7 +26,7 @@
                         <a class="nav-link" @click="abrirFormulario('alumno')">Alumnos</a>
                         <a class="nav-link" @click="abrirFormulario('materia')">Materias</a>
                         <a class="nav-link" @click="abrirFormulario('matricula')">Matricula</a>
-                        <a class="nav-link" @click="abrirFormulario('inscripcion')">Inscripcion</a>
+                        <a class="nav-link" @click="abrirFormulario('inscribir')">Inscripcion</a>
                     </div>
                 </div>
             </div>
@@ -36,7 +36,7 @@
              <component-materias ref="materia" v-show="forms['materia'].mostrar"></component-materias>
              <component-alumnos ref="alumno" v-show="forms['alumno'].mostrar"></component-alumnos>
              <component-matriculas ref="matricula" v-show="forms['matricula'].mostrar"></component-matriculas>
-             <component-inscripciones ref="inscripcion" v-show="forms['inscripcion'].mostrar"></component-inscripciones>
+             <component-inscribir ref="inscribir" v-show="forms['inscribir'].mostrar"></component-inscribir>
             
 
         </div>
@@ -48,7 +48,7 @@
     <script src="materias.js"></script> 
     <script src="alumnos.js"></script>
     <script src="matriculas.js"></script>
-    <script src="inscripciones.js"></script>   
+    <script src="inscribir.js"></script>   
     <script src="main.js"></script>
 </body>
 </html>
