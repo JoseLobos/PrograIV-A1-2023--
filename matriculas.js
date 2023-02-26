@@ -30,7 +30,7 @@ Vue.component('component-matriculas',{
                 this.matricula.idMatricula = new Date().getTime().toString(16);
             }
             store.put( JSON.parse(JSON.stringify(this.matricula) ) );
-            this.listarMatriculas();
+            this.listar();
             this.nuevoMatricula();
         },
         eliminarMatricula(matricula){
@@ -38,7 +38,7 @@ Vue.component('component-matriculas',{
                 let store = this.abrirStore('tblmatriculas', 'readwrite'),
                     req = store.delete(matricula.idMatricula);
                 req.onsuccess = resp=>{
-                    this.listarMatriculas();
+                    this.listar();
                 };
             }
         },
@@ -63,7 +63,7 @@ Vue.component('component-matriculas',{
             this.accion = 'modificar';
             this.matricula = matricula;
         },
-        listarMatriculas(){
+        listar(){
             let store = this.abrirStore('tblmatriculas', 'readonly'),
                 data = store.getAll();
             data.onsuccess = resp=>{
@@ -90,7 +90,7 @@ Vue.component('component-matriculas',{
             };
             indexDB.onsuccess= e=>{
                 this.db = e.target.result;
-                this.listarMatriculas();
+                this.listar();
             };
             indexDB.onerror= e=>{
                 console.error( e );
@@ -262,7 +262,7 @@ Vue.component('component-matriculas',{
                                 <tr>
                                     <th>BUSCAR:</th>
                                     <th colspan="2"><input type="text" class="form-control" v-model="buscar"
-                                        @keyup="listarMatriculas()"
+                                        @keyup="listar()"
                                         placeholder="Buscar por codigo o nombre"></th>
                                 </tr>
                                 <tr>

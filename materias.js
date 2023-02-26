@@ -23,7 +23,7 @@ Vue.component('component-materias',{
                 this.materia.idMateria = new Date().getTime().toString(16);
             }
             store.put( JSON.parse(JSON.stringify(this.materia) ) );
-            this.listarMaterias();
+            this.listar();
             this.nuevoMateria();
         },
         eliminarMateria(materia){
@@ -31,7 +31,7 @@ Vue.component('component-materias',{
                 let store = this.abrirStore('tblmaterias', 'readwrite'),
                     req = store.delete(materia.idMateria);
                 req.onsuccess = resp=>{
-                    this.listarMaterias();
+                    this.listar();
                 };
             }
         },
@@ -50,7 +50,7 @@ Vue.component('component-materias',{
             this.accion = 'modificar';
             this.materia = materia;
         },
-        listarMaterias(){
+        listar(){
             let store = this.abrirStore('tblmaterias', 'readonly'),
                 data = store.getAll();
             data.onsuccess = resp=>{
@@ -77,7 +77,7 @@ Vue.component('component-materias',{
             };
             indexDB.onsuccess= e=>{
                 this.db = e.target.result;
-                this.listarMaterias();
+                this.listar();
             };
             indexDB.onerror= e=>{
                 console.error( e );
@@ -183,7 +183,7 @@ Vue.component('component-materias',{
                                 <tr>
                                     <th>BUSCAR:</th>
                                     <th colspan="2"><input type="text" class="form-control" v-model="buscar"
-                                        @keyup="listarMaterias()"
+                                        @keyup="listar()"
                                         placeholder="Buscar por codigo o nombre"></th>
                                 </tr>
                                 <tr>

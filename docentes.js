@@ -25,7 +25,7 @@ Vue.component('component-docentes',{
                 this.docente.idDocente = new Date().getTime().toString(16);
             }
             store.put( JSON.parse(JSON.stringify(this.docente) ) );
-            this.listarDocentes();
+            this.listar();
             this.nuevoDocente();
         },
         eliminarDocente(docente){
@@ -33,7 +33,7 @@ Vue.component('component-docentes',{
                 let store = this.abrirStore('tbldocentes', 'readwrite'),
                     req = store.delete(docente.idDocente);
                 req.onsuccess = resp=>{
-                    this.listarDocentes();
+                    this.listar();
                 };
             }
         },
@@ -55,7 +55,7 @@ Vue.component('component-docentes',{
             this.accion = 'modificar';
             this.docente = docente;
         },
-        listarDocentes(){
+        listar(){
             let store = this.abrirStore('tbldocentes', 'readonly'),
                 data = store.getAll();
             data.onsuccess = resp=>{
@@ -82,7 +82,7 @@ Vue.component('component-docentes',{
             };
             indexDB.onsuccess= e=>{
                 this.db = e.target.result;
-                this.listarDocentes();
+                this.listar();
             };
             indexDB.onerror= e=>{
                 console.error( e );
@@ -219,7 +219,7 @@ Vue.component('component-docentes',{
                                 <tr>
                                     <th>BUSCAR:</th>
                                     <th colspan="2"><input type="text" class="form-control" v-model="buscar"
-                                        @keyup="listarDocentes()"
+                                        @keyup="listar()"
                                         placeholder="Buscar por codigo o nombre"></th>
                                 </tr>
                                 <tr>

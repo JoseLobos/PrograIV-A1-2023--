@@ -25,7 +25,7 @@ Vue.component('component-alumnos',{
                 this.alumno.idAlumno = new Date().getTime().toString(16);
             }
             store.put( JSON.parse(JSON.stringify(this.alumno) ) );
-            this.listarAlumnos();
+            this.listar();
             this.nuevoAlumno();
         },
         eliminarAlumno(alumno){
@@ -33,7 +33,7 @@ Vue.component('component-alumnos',{
                 let store = this.abrirStore('tblalumnos', 'readwrite'),
                     req = store.delete(alumno.idAlumno);
                 req.onsuccess = resp=>{
-                    this.listarAlumnos();
+                    this.listar();
                 };
             }
         },
@@ -55,7 +55,7 @@ Vue.component('component-alumnos',{
             this.accion = 'modificar';
             this.alumno = alumno;
         },
-        listarAlumnos(){
+        listar(){
             let store = this.abrirStore('tblalumnos', 'readonly'),
                 data = store.getAll();
             data.onsuccess = resp=>{
@@ -82,7 +82,7 @@ Vue.component('component-alumnos',{
             };
             indexDB.onsuccess= e=>{
                 this.db = e.target.result;
-                this.listarAlumnos();
+                this.listar();
             };
             indexDB.onerror= e=>{
                 console.error( e );
@@ -229,7 +229,7 @@ Vue.component('component-alumnos',{
                                 <tr>
                                     <th>BUSCAR:</th>
                                     <th colspan="2"><input type="text" class="form-control" v-model="buscar"
-                                        @keyup="listarAlumnos()"
+                                        @keyup="listar()"
                                         placeholder="Buscar por codigo o nombre"></th>
                                 </tr>
                                 <tr>
