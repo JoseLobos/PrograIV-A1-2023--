@@ -188,6 +188,7 @@ Vue.component('component-materias',{
                                 </tr>
                                 <tr>
                                     <th>Codigo</th>
+                                    <th colspan="2">Codigo</th> 
                                     <th colspan="2">Materia</th>                                
                                     <th colspan="2">Docente</th>
                                     <th colspan="2">Horario</th>

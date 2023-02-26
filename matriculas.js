@@ -267,8 +267,8 @@ Vue.component('component-matriculas',{
                                 </tr>
                                 <tr>
                                     <th>CODIGO</th>
-                                    <th>NOMBRE</th>
-                                    <th>APELLIDO</th>
+                                    <th>NOMBRES</th>
+                                    <th>APELLIDOS</th>
                                     <th>DIRECCION</th>
                                     <th>FECHA DE MATRICULA</th>
                                     <th>CORREO</th>
@@ -285,8 +285,8 @@ Vue.component('component-matriculas',{
                             <tbody>
                                 <tr v-for="matricula in matriculas" :key="matricula.idMatricula" @click="modificarMatricula(matricula)" >
                                     <td>{{ matricula.codigo }}</td>
-                                    <td>{{ matricula.nombre }}</td>
-                                    <td>{{ matricula.apellido }}</td>
+                                    <td>{{ matricula.nombres }}</td>
+                                    <td>{{ matricula.apellidos }}</td>
                                     <td>{{ matricula.direccion }}</td>
                                     <td>{{ matricula.fechadematri }}</td>
                                     <td>{{ matricula.correo }}</td>
