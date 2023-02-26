@@ -111,10 +111,10 @@ Vue.component('component-matriculas',{
                         <form id="frmMatricula" @reset.prevent="nuevoMatricula" v-on:submit.prevent="guardarMatricula">
 
                             <div class="row p-1">
-                                <div class="col-3 col-md-3">
+                                <div class="col-3 col-md-4">
                                     <label for="txtCodigoMatricula">Codigo:</label>
                                 </div>
-                                <div class="col-3 col-md-2">
+                                <div class="col-6 col-md-6">
                                     <input required pattern="[0-9]{3}" 
                                         title="Ingrese un codigo de la matricula de 3 digitos"
                                             v-model="matricula.codigo" type="text" class="form-control" name="txtCodigoMatricula" id="txtCodigoMatricula">
@@ -122,58 +122,58 @@ Vue.component('component-matriculas',{
                             </div>
 
                             <div class="row p-1">
-                                <div class="col-3 col-md-3">
+                                <div class="col-3 col-md-4">
                                     <label for="txtNombresMatricula">Nombres:</label>
                                 </div>
-                                <div class="col-9 col-md-4">
+                                <div class="col-6 col-md-6">
                                     <input required pattern="[A-Za-zÑñáéíóú ]{3,75}"
                                         v-model="matricula.nombres" type="text" class="form-control" name="txtNombresMatricula" id="txtNombresMatricula">
                                 </div>
                             </div>
                             <div class="row p-1">
-                                <div class="col-3 col-md-3">
+                                <div class="col-3 col-md-4">
                                     <label for="txtApellidosMatricula">Apellidos:</label>
                                 </div>
-                                <div class="col-9 col-md-4">
+                                <div class="col-6 col-md-6">
                                     <input required pattern="[A-Za-zÑñáéíóú ]{3,75}"
                                         v-model="matricula.apellidos" type="text" class="form-control" name="txtApellidosMatricula" id="txtApellidosMatricula">
                                 </div>
                             </div>
                             <div class="row p-1">
-                                <div class="col-3 col-md-3">
+                                <div class="col-3 col-md-4">
                                     <label for="txtDireccionMatricula">Direccion:</label>
                                 </div>
-                                <div class="col-9 col-md-4">
+                                <div class="col-6 col-md-6">
                                     <input required pattern="[A-Za-zÑñáéíóú ]{3,75}"
                                         v-model="matricula.direccion" type="text" class="form-control" name="txtDireccionMatricula" id="txtDireccionMatricula">
                                 </div>
                             </div>
 
                             <div class="row p-1">
-                                <div class="col-3 col-md-3">
+                                <div class="col-3 col-md-4">
                                     <label for="txtFechaMatricula">Fecha de matricula :</label>
                                 </div>
-                                <div class="col-9 col-md-3">
+                                <div class="col-6 col-md-6">
                                     <input required 
                                         v-model="matricula.fechadematri" type="date" class="form-control" name="txtFechadematriMatricula" id="txtFechadematriMatricula">
                                 </div>
                             </div>
 
                             <div class="row p-1">
-                                <div class="col-3 col-md-3">
+                                <div class="col-3 col-md-4">
                                     <label for="txtCorreoMatricula">Correo:</label>
                                 </div>
-                                <div class="col-9 col-md-4">
+                                <div class="col-6 col-md-6">
                                     <input required pattern="[A-Za-zÑñáéíóú-@ ]{3,75}"
                                         v-model="matricula.correo" type="text" class="form-control" name="txtCorreoMatricula" id="txtCorreoMatricula">
                                 </div>
                             </div>
                             
                             <div class="row p-1">
-                            <div class="col-3 col-md-2">
+                            <div class="col-3 col-md-4">
                               <label for="carrera">Carrera:</label>
                             </div>
-                            <div class="col-9 col-md-6">
+                            <div class="col-6 col-md-6">
                               <select v-model="matricula.carrera" name="txtCarreraMatricula" id="txtCarreraMatricula">
                                 <option value="" disabled>Selecciona tu carrera</option>
                                 <option value="Derecho">Derecho</option>
@@ -187,30 +187,30 @@ Vue.component('component-matriculas',{
                           </div>
 
                             <div class="row p-1">
-                                <div class="col-3 col-md-3">
+                                <div class="col-3 col-md-4">
                                     <label for="txtMunicipioMatricula">Municipio:</label>
                                 </div>
-                                <div class="col-9 col-md-3">
+                                <div class="col-6 col-md-6">
                                     <input required pattern="[A-Za-zÑñáéíóú ]{3,75}"
                                         v-model="matricula.municipio" type="text" class="form-control" name="txtMunicipioMatricula" id="txtMunicipioMatricula">
                                 </div>
                             </div>
 
                             <div class="row p-1">
-                                <div class="col-3 col-md-3">
+                                <div class="col-3 col-md-4">
                                     <label for="txtNDepartamentoMatricula">Departamento:</label>
                                 </div>
-                                <div class="col-9 col-md-3">
+                                <div class="col-6 col-md-6">
                                     <input required pattern="[A-Za-zÑñáéíóú ]{3,75}"
                                         v-model="matricula.departamento" type="text" class="form-control" name="txtDepartamentoMatricula" id="txtDepartamentoMatricula">
                                 </div>
                             </div>
 
                             <div class="row p-1">
-                                <div class="col-3 col-md-3">
+                                <div class="col-3 col-md-4">
                                     <label for="txtTelefonoMatricula">Telefono:</label>
                                 </div>
-                                <div class="col-9 col-md-3">
+                                <div class="col-6 col-md-6">
                                     <input required pattern="[0-9]{4}-[0-9]{4]"
                                         v-model="matricula.telefono" type="text" class="form-control" name="txtTelefonoMatricula" id="txtTelefonoMatricula">
                                 </div>
@@ -218,20 +218,20 @@ Vue.component('component-matriculas',{
 
 
                             <div class="row p-1">
-                                <div class="col-3 col-md-3">
+                                <div class="col-3 col-md-4">
                                     <label for="txtDuiMatricula">Dui:</label>
                                 </div>
-                                <div class="col-9 col-md-3">
+                                <div class="col-6 col-md-6">
                                     <input required pattern="[0-9]{7}-[0-9]{1}"
                                         v-model="matricula.dui" type="text" class="form-control" name="txtDuiMatricula" id="txtDuiMatricula">
                                 </div>
                             </div>
 
                             <div class="row p-1">
-                            <div class="col-3 col-md-3">
+                            <div class="col-3 col-md-4">
                                 <label for="txtSexoMatricula">Sexo:</label>
                             </div>
-                            <div class="col-9 col-md-3">
+                            <div class="col-6 col-md-6">
                                 <select                      
                                         v-model="matricula.sexo"  class="form-control" name="txtSexoMatricula" id="txtSexoMatricula">
                                         <option value="Masculino">Hombre</option>

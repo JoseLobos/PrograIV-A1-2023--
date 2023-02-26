@@ -104,10 +104,10 @@ Vue.component('component-alumnos',{
                         <form id="frmAlumno" @reset.prevent="nuevoAlumno" v-on:submit.prevent="guardarAlumno">
 
                             <div class="row p-1">
-                                <div class="col-3 col-md-2">
+                                <div class="col-3 col-md-4">
                                     <label for="txtCodigoAlumno">Codigo:</label>
                                 </div>
-                                <div class="col-3 col-md-3">
+                                <div class="col-6 col-md-6">
                                     <input required pattern="[0-9]{3}" 
                                         title="Ingrese un codigo de alumno de 3 digitos"
                                             v-model="alumno.codigo" type="text" class="form-control" name="txtCodigoAlumno" id="txtCodigoAlumno">
@@ -116,10 +116,10 @@ Vue.component('component-alumnos',{
 
 
                             <div class="row p-1">
-                                <div class="col-3 col-md-2">
+                                <div class="col-3 col-md-4">
                                     <label for="txtNombreAlumno">Nombre:</label>
                                 </div>
-                                <div class="col-9 col-md-6">
+                                <div class="col-6 col-md-6">
                                     <input required pattern="[A-Za-zÑñáéíóú ]{3,75}"
                                         v-model="alumno.nombre" type="text" class="form-control" name="txtNombreAlumno" id="txtNombreAlumno">
                                 </div>
@@ -127,10 +127,10 @@ Vue.component('component-alumnos',{
 
 
                             <div class="row p-1">
-                                <div class="col-3 col-md-2">
+                                <div class="col-3 col-md-4">
                                     <label for="txtFechaAlumno">Fecha de Nacimiento:</label>
                                 </div>
-                                <div class="col-9 col-md-5">
+                                <div class="col-6 col-md-6">
                                     <input required 
                                         v-model="alumno.fecha" type="date" class="form-control" name="txtFechaAlumno" id="txtFechaAlumno">
                                 </div>
@@ -138,10 +138,10 @@ Vue.component('component-alumnos',{
 
 
                             <div class="row p-1">
-                                <div class="col-3 col-md-2">
+                                <div class="col-3 col-md-4">
                                     <label for="txtDireccionAlumno">Direccion:</label>
                                 </div>
-                                <div class="col-9 col-md-6">
+                                <div class="col-6 col-md-6">
                                     <input required pattern="[A-Za-zÑñáéíóú ]{3,75}"
                                         v-model="alumno.direccion" type="text" class="form-control" name="txtDireccionAlumno" id="txtDireccionAlumno">
                                 </div>
@@ -149,10 +149,10 @@ Vue.component('component-alumnos',{
 
 
                             <div class="row p-1">
-                                <div class="col-3 col-md-2">
+                                <div class="col-3 col-md-4">
                                     <label for="txtMunicipioAlumno">Municipio:</label>
                                 </div>
-                                <div class="col-9 col-md-6">
+                                <div class="col-6 col-md-6">
                                     <input required pattern="[A-Za-zÑñáéíóú ]{3,75}"
                                         v-model="alumno.municipio" type="text" class="form-control" name="txtMunicipioAlumno" id="txtMunicipioAlumno">
                                 </div>
@@ -160,10 +160,10 @@ Vue.component('component-alumnos',{
 
 
                             <div class="row p-1">
-                                <div class="col-3 col-md-2">
+                                <div class="col-3 col-md-4">
                                     <label for="txtNDepartamentoAlumno">Departamento:</label>
                                 </div>
-                                <div class="col-9 col-md-6">
+                                <div class="col-6 col-md-6">
                                     <input required pattern="[A-Za-zÑñáéíóú ]{3,75}"
                                         v-model="alumno.departamento" type="text" class="form-control" name="txtNDepartamentoAlumno" id="txtNDepartamentoAlumno">
                                 </div>
@@ -171,10 +171,10 @@ Vue.component('component-alumnos',{
 
 
                             <div class="row p-1">
-                                <div class="col-3 col-md-2">
+                                <div class="col-3 col-md-4">
                                     <label for="txtTelefonoAlumno">Telefono:</label>
                                 </div>
-                                <div class="col-9 col-md-6">
+                                <div class="col-6 col-md-6">
                                     <input required pattern="[0-9]{4}-[0-9]{4]"
                                         v-model="alumno.telefono" type="text" class="form-control" name="txtTelefonoAlumno" id="txtTelefonoAlumno">
                                 </div>
@@ -182,10 +182,10 @@ Vue.component('component-alumnos',{
 
 
                             <div class="row p-1">
-                            <div class="col-3 col-md-3">
+                            <div class="col-3 col-md-4">
                                 <label for="txtDuiAlumno">Dui:</label>
                             </div>
-                            <div class="col-9 col-md-3">
+                            <div class="col-6 col-md-6">
                                 <input required pattern="[0-9]{7}-[0-9]{1}"
                                     v-model="alumno.dui" type="text" class="form-control" name="txtDuiAlumno" id="txtDuiAlumno">
                             </div>
@@ -193,10 +193,10 @@ Vue.component('component-alumnos',{
 
 
                             <div class="row p-1">
-                            <div class="col-3 col-md-3">
+                            <div class="col-3 col-md-4">
                                 <label for="txtSexoAlumno">Sexo:</label>
                             </div>
-                            <div class="col-9 col-md-3">
+                            <div class="col-6 col-md-6">
                                 <select                      
                                         v-model="alumno.sexo"  class="form-control" name="txtSexoAlumno" id="txtSexoAlumno">
                                         <option value="Masculino">Hombre</option>
