@@ -106,11 +106,11 @@ Vue.component('component-materias',{
                             </div>
                             <div class="row p-1">
                                 <div class="col-3 col-md-2">
-                                    <label for="txtNombreMateria">Materia:</label>
+                                    <label for="txtMateriaMateria">Materia:</label>
                                 </div>
                                 <div class="col-9 col-md-6">
                                     <input required pattern="[A-Za-zÑñáéíóú ]{3,75}"
-                                        v-model="materia.materia" type="text" class="form-control" name="txtNombreMateria" id="txtNombreMateria">
+                                        v-model="materia.materia" type="text" class="form-control" name="txtMateriaMateria" id="txtMateriaMateria">
                                 </div>
                             </div>
                             <div class="row p-1">
@@ -174,7 +174,7 @@ Vue.component('component-materias',{
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-md-6">
+            <div class="col-12 col-md-12">
                 <div class="card">
                     <div class="card-header">LISTADO DE MATERIAS</div>
                     <div class="card-body">
@@ -184,24 +184,28 @@ Vue.component('component-materias',{
                                     <th>BUSCAR:</th>
                                     <th colspan="2"><input type="text" class="form-control" v-model="buscar"
                                         @keyup="listarMaterias()"
-                                        placeholder="Buscar por codigo o materia></th>
+                                        placeholder="Buscar por codigo o nombre"></th>
                                 </tr>
                                 <tr>
-                                    <th>Codigo</th>
-                                    <th colspan="2">Codigo</th> 
-                                    <th colspan="2">Materia</th>                                
-                                    <th colspan="2">Docente</th>
-                                    <th colspan="2">Horario</th>
-                                    <th colspan="2">Ciclo</th>
+                                <th>codigo:</th>
+                                <th>materias:</th>
+                                <th>docente:</th>
+                                <th>horario:</th>
+                                <th>ciclo:</th>
+                
+
+
+
                                 </tr>
                             </thead>
                             <tbody>
+
                                 <tr v-for="materia in materias" :key="materia.idMateria" @click="modificarMateria(materia)" >
-                                    <td>{{ materia.codigo }}</td>
+                                    <td>{{ materia.codigo  }}</td>
                                     <td>{{ materia.materia }}</td>
                                     <td>{{ materia.docente }}</td>
                                     <td>{{ materia.horario }}</td>
-                                    <td>{{ materia.ciclo }}</td>
+                                    <td>{{ materia.ciclo   }}</td>
                                     
                                     <td><button class="btn btn-danger" @click="eliminarMateria(materia)">ELIMINAR</button></td>
                                 </tr>
@@ -213,5 +217,3 @@ Vue.component('component-materias',{
         </div>
     `
 });
-
-
