@@ -4,7 +4,7 @@ var db;
     
     data: {
         forms:{
-            docente     : {mostrar:true},
+            docente     : {mostrar:false},
             alumno      : {mostrar:false},
             materia     : {mostrar:false},
             matricula   : {mostrar:false},
@@ -19,7 +19,7 @@ var db;
                     this.forms[key].mostrar = false;
                 }
             }
-            this.forms[form].mostrar = true;
+            this.forms[form].mostrar = !this.forms[form].mostrar;
             this.$refs[form].listar();
         },
         
