@@ -15,7 +15,7 @@ var db;
     methods:{
         abrirFormulario(form) {
             for (var key in this.forms) {
-                if (key !== form) {
+                 if (key !== form) {
                     this.forms[key].mostrar = false;
                 }
             }
