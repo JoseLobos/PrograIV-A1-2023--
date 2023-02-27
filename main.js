@@ -20,8 +20,6 @@ methods:{
         }
         this.forms[form].mostrar = !this.forms[form].mostrar;
         this.$refs[form].listar();
-        this.$refs[form].listarAlumnos();
-        this.$refs[form].listarMateria();
     },
     
     abrirBD(){
@@ -32,14 +30,14 @@ methods:{
                 tblalumno = req.createObjectStore('tblalumnos',{keyPath:'idAlumno'}),
                 tblmateria = req.createObjectStore('tblmaterias',{keyPath:'idMateria'});
                 tblmatricula = req.createObjectStore('tblmatricula',{keyPath:'idMatricula'});
-                tblinscripcion = req.createObjectStore('tblinscritos',{keyPath:'idInscrito'});
+                tblinscripcion = req.createObjectStore('tblinscritos',{keyPath:'idInscripcion'});
 
             
             
             tbldocente.createIndex('idDocente', 'idDocente', {unique:true});
             tblalumno.createIndex('idAlumno', 'idAlumno', {unique:true});
             tblmateria.createIndex('idMateria', 'idMateria', {unique:true});
-            tblinscripcion.createIndex('idInscrito', 'idInscrito', {unique:true});
+            tblinscripcion.createIndex('idInscripcion', 'idInscripcion', {unique:true});
         };
         indexDB.onsuccess= e=>{
             db = e.target.result;

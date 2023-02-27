@@ -8,7 +8,7 @@ Vue.component('component-inscripciones',{
             inscripciones: [],
             inscripcion:{
                 idInscripcion : '',
-                codigo:'',
+                nombre:'',
                 materia:'',
             }
         }
@@ -35,7 +35,7 @@ Vue.component('component-inscripciones',{
         nuevoInscripcion(){
             this.accion = 'nuevo';
             this.inscripcion.idInscripcion = '';
-            this.inscripcion.codigo = '';
+            this.inscripcion.nombre = '';
             this.inscripcion.materia='';
             
         },
@@ -48,10 +48,7 @@ Vue.component('component-inscripciones',{
                 data = store.getAll();
             data.onsuccess = resp=>{
                 this.inscripciones = data.result
-                .filter(inscripcion=>inscripcion.codigo.toLowerCase().indexOf(this.buscar.toLowerCase())>-1||
-                inscripcion.codigo.indexOf(this.buscar)>-1 ||
-                inscripcion.materia.indexOf(this.buscar)>-1
-              );
+                .filter(inscripcion=>inscripcion.materia.toLowerCase().indexOf(this.buscar.toLowerCase())>-1);
             };
         },
         listarAlumnos(){
@@ -116,7 +113,7 @@ Vue.component('component-inscripciones',{
                                 </div>
                                 <div class="col-6 col-md-6">
                                 <select class="form-control" v-model="inscripcion.nombre">
-                                    <option v-for="matricula in matriculas" :value="matricula.codigo">{{matricula.nombre}}</option>
+                                    <option v-for="matricula in matriculas" :value="matricula.nombre">{{matricula.nombre}}</option>
                                 </select>
                                 </div>
                             </div>
@@ -157,7 +154,7 @@ Vue.component('component-inscripciones',{
                                     <th>BUSCAR:</th>
                                     <th colspan="2"><input type="text" class="form-control" v-model="buscar"
                                         @keyup="listar()"
-                                        placeholder="Buscar por codigo o nombre"></th>
+                                        placeholder="Buscar por nombre o nombre"></th>
                                 </tr>
                                 <tr>
                                     <th>CODIGO</th>
@@ -168,7 +165,7 @@ Vue.component('component-inscripciones',{
                             </thead>
                             <tbody>
                                 <tr v-for="inscripcion in inscripciones" :key="inscripcion.idInscripcion" @click="modificarInscripcion(inscripcion)" >
-                                    <td>{{ inscripcion.codigo }}</td>
+                                    <td>{{ inscripcion.nombre }}</td>
                                     <td>{{ inscripcion.materia }}</td>
                                     <td><button class="btn btn-danger" @click="eliminarInscripcion(inscripcion)">ELIMINAR</button></td>
                                 </tr>

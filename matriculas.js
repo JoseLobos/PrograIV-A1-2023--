@@ -27,7 +27,7 @@ Vue.component('component-matriculas',{
             this.nuevoMatricula();
         },
         eliminarMatricula(matricula){
-            if( confirm(`Esta seguro de eliminar a ${matricula.nombres}?`) ){
+            if( confirm(`Esta seguro de eliminar a ${matricula.nombre}?`) ){
                 let store = this.abrirStore('tblmatricula', 'readwrite'),
                     req = store.delete(matricula.idMatricula);
                 req.onsuccess = resp=>{
@@ -54,7 +54,7 @@ Vue.component('component-matriculas',{
                 this.matriculas = data.result
                 .filter(matricula=>matricula.nombre.toLowerCase().indexOf(this.buscar.toLowerCase())>-1||
                 matricula.codigo.indexOf(this.buscar)>-1 ||
-                matricula.nombres.indexOf(this.buscar)>-1
+                matricula.nombre.indexOf(this.buscar)>-1
               );
             };
         },
