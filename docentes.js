@@ -189,7 +189,7 @@ Vue.component('component-docentes',{
                                 <label for="txtSexoDocente">Sexo:</label>
                             </div>
                             <div class="col-6 col-md-6">
-                                <select                      
+                                <select  required           
                                         v-model="docente.sexo"  class="form-control" name="txtSexoDocente" id="txtSexoDocente">
                                         <option value="Masculino">Hombre</option>
                                         <option value="Femenino">Mujer</option>    

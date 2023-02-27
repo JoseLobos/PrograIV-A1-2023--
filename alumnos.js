@@ -124,9 +124,7 @@ Vue.component('component-alumnos',{
                                         v-model="alumno.nombre" type="text" class="form-control" name="txtNombreAlumno" id="txtNombreAlumno">
                                 </div>
                             </div>
-                            <select class="form-control" v-model="alumno.nombre">
-                            <option v-for="alumno in alumnos" :value="alumno.idAlumno">{{ alumno.codigo }} - {{alumno.nombre}}</option>
-                        </select>
+                
 
                             <div class="row p-1">
                                 <div class="col-3 col-md-4">
@@ -199,7 +197,7 @@ Vue.component('component-alumnos',{
                                 <label for="txtSexoAlumno">Sexo:</label>
                             </div>
                             <div class="col-6 col-md-6">
-                                <select                      
+                                <select  required                    
                                         v-model="alumno.sexo"  class="form-control" name="txtSexoAlumno" id="txtSexoAlumno">
                                         <option value="Masculino">Hombre</option>
                                         <option value="Femenino">Mujer</option>    

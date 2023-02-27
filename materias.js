@@ -132,7 +132,7 @@ Vue.component('component-materias',{
                                 <label for="txtDocenteMateria">Docente:</label>
                             </div>
                             <div class="col-6 col-md-6">
-                            <select id="txtDocenteMateria" class="form-control" v-model="materia.docente">
+                            <select required id="txtDocenteMateria" class="form-control" v-model="materia.docente">
                             <option v-for="docente in docentes" :value="docente.nombre">{{ docente.codigo }} - {{ docente.nombre}}</option>
                             </select>
                             </div>
@@ -167,7 +167,7 @@ Vue.component('component-materias',{
                           <label for="dia">Dia:</label>
                         </div>
                         <div class="col-6 col-md-6">
-                          <select v-model="materia.dia" name="txtCicloDia" id="txtCicloDia">
+                          <select required v-model="materia.dia" name="txtCicloDia" id="txtCicloDia">
                             <option value="" disabled>Selecciona el dia </option>
                             <option value="Lunes">Lunes</option>
                             <option value="Martes">Martes</option>
@@ -186,7 +186,7 @@ Vue.component('component-materias',{
 
                             <div class="col-6 col-md-6">
 
-                                <input title="Ingrese el aula" v-model="materia.aula"
+                                <input  title="Ingrese el aula" v-model="materia.aula"
                                     pattern="[A-Za-zñÑáéíóúü .#0-9_]{3,75}" required type="text" class="form-control">
 
                             </div>

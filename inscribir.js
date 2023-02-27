@@ -112,7 +112,7 @@ Vue.component('component-inscripciones',{
                                     <label for="txtCodigoInscripcion">Alumnos Matriculados:</label>
                                 </div>
                                 <div class="col-6 col-md-6">
-                                <select class="form-control" v-model="inscripcion.nombre">
+                                <select required class="form-control" v-model="inscripcion.nombre">
                                     <option v-for="matricula in matriculas" :value="matricula.nombre">{{matricula.nombre}}</option>
                                 </select>
                                 </div>
@@ -123,7 +123,7 @@ Vue.component('component-inscripciones',{
                                     <label for="txtMateria">Materia para Inscribir:</label>
                                 </div>
                                 <div class="col-6 col-md-6">
-                                <select class="form-control" v-model="inscripcion.materia">
+                                <select required class="form-control" v-model="inscripcion.materia">
                                     <option v-for="materia in materias" :value="materia.materia">{{materia.codigo}}-{{materia.materia}}</option>
                                 </select>
                                 </div>

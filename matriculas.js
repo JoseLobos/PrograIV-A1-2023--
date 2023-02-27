@@ -10,6 +10,7 @@ Vue.component('component-matriculas',{
             idMatricula : '',
             nombre:'',
             fechadematri : '',
+            correo : '',
             carrera : '',
 
 
@@ -40,6 +41,7 @@ Vue.component('component-matriculas',{
             this.matricula.idMatricula = '';
             this.matricula.nombre = '';
             this.matricula.fechadematri = '';
+            this.matricula.correo = '';
             this.matricula.carrera = '';
             
         },
@@ -108,7 +110,7 @@ Vue.component('component-matriculas',{
                                     <label for="txtRegAlm">Alumnos Registrados:</label>
                                 </div>
                                 <div class="col-6 col-md-6">
-                                <select class="form-control" v-model="matricula.nombre">
+                                <select required class="form-control" v-model="matricula.nombre">
                                 <option v-for="alumno in alumnos" :value="alumno.codigo">{{ alumno.codigo }} - {{alumno.nombre}}</option>
                                 </select>
                                 </div>
@@ -140,7 +142,7 @@ Vue.component('component-matriculas',{
                               <label for="carrera">Carrera:</label>
                             </div>
                             <div class="col-6 col-md-6">
-                              <select v-model="matricula.carrera" name="txtCarreraMatricula" id="txtCarreraMatricula">
+                              <select required v-model="matricula.carrera" name="txtCarreraMatricula" id="txtCarreraMatricula">
                                 <option value="" disabled>Selecciona tu carrera</option>
                                 <option value="Derecho">Derecho</option>
                                 <option value="Relaciones Internacionales">Relaciones Internacionales</option>
@@ -204,7 +206,6 @@ Vue.component('component-matriculas',{
         </div>
     `
 });
-
 
 
 
