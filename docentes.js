@@ -71,7 +71,7 @@ Vue.component('component-docentes',{
             return tx.objectStore(store);
         },
         abrirBD(){
-            let indexDB = indexedDB.open('DocentesDB',1);
+            let indexDB = indexedDB.open('Sistema_Academico',1);
             indexDB.onupgradeneeded=e=>{
                 let req = e.target.result,
                     tbldocente = req.createObjectStore('tbldocentes', {keyPath:'idDocente'});
@@ -179,7 +179,7 @@ Vue.component('component-docentes',{
                                     <label for="txtDuiDocente">Dui:</label>
                                 </div>
                                 <div class="col-6 col-md-6">
-                                    <input required pattern="[0-9]{7}-[0-9]{1}"
+                                    <input required pattern="[0-9]{8}-[0-9]{1}"
                                         v-model="docente.dui" type="text" class="form-control" name="txtDuiDocente" id="txtDuiDocente">
                                 </div>
                             </div>

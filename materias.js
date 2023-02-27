@@ -3,6 +3,7 @@ Vue.component('component-materias',{
         return {
             accion:'nuevo',
             buscar: '',
+            docentes: [],
             materias: [],
             materia:{
                 idMateria : '',
@@ -65,12 +66,20 @@ Vue.component('component-materias',{
               );
             };
         },
+        listarDocentes(){
+            let store = this.abrirStore('tbldocentes', 'readonly'),
+                data = store.getAll();
+            data.onsuccess = resp=>{
+                this.docentes = data.result
+                
+            };
+        },
         abrirStore(store, modo){
             let tx = this.db.transaction(store, modo); 
             return tx.objectStore(store);
         },
         abrirBD(){
-            let indexDB = indexedDB.open('MateriasDB',1);
+            let indexDB = indexedDB.open('Sistema_Academico',1);
             indexDB.onupgradeneeded=e=>{
                 let req = e.target.result,
                     tblmateria = req.createObjectStore('tblmaterias', {keyPath:'idMateria'});
@@ -82,6 +91,7 @@ Vue.component('component-materias',{
             indexDB.onsuccess= e=>{
                 this.db = e.target.result;
                 this.listar();
+                this.listarDocentes();
             };
             indexDB.onerror= e=>{
                 console.error( e );
@@ -122,8 +132,9 @@ Vue.component('component-materias',{
                                 <label for="txtDocenteMateria">Docente:</label>
                             </div>
                             <div class="col-6 col-md-6">
-                                <input required pattern="[A-Za-zÑñáéíóú ]{3,75}"
-                                    v-model="materia.docente" type="text" class="form-control" name="txtDocenteMateria" id="txtDocenteMateria">
+                            <select id="txtDocenteMateria" class="form-control" v-model="materia.docente">
+                            <option v-for="docente in docentes" :value="docente.nombre">{{ docente.codigo }} - {{ docente.nombre}}</option>
+                            </select>
                             </div>
                         </div>
 

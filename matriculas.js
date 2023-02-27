@@ -4,28 +4,21 @@ Vue.component('component-matriculas',{
         return {
             accion:'nuevo',
             buscar: '',
+            alumnos:[],
             matriculas: [],
             matricula:{
             idMatricula : '',
-            codigo : '',
-            nombres : '',
-            apellidos : '',
-            direccion : '',
+            nombre:'',
             fechadematri : '',
-            correo : '',
             carrera : '',
-            municipio : '',
-            departamento : '',
-            telefono : '',
-            dui : '',
-            sexo : '',
+
 
             }
         }
     },
     methods:{
         guardarMatricula(){
-            let store = this.abrirStore('tblmatriculas', 'readwrite');
+            let store = this.abrirStore('tblmatricula', 'readwrite');
             if(this.accion==='nuevo'){
                 this.matricula.idMatricula = new Date().getTime().toString(16);
             }
@@ -35,7 +28,7 @@ Vue.component('component-matriculas',{
         },
         eliminarMatricula(matricula){
             if( confirm(`Esta seguro de eliminar a ${matricula.nombres}?`) ){
-                let store = this.abrirStore('tblmatriculas', 'readwrite'),
+                let store = this.abrirStore('tblmatricula', 'readwrite'),
                     req = store.delete(matricula.idMatricula);
                 req.onsuccess = resp=>{
                     this.listar();
@@ -45,18 +38,9 @@ Vue.component('component-matriculas',{
         nuevoMatricula(){
             this.accion = 'nuevo';
             this.matricula.idMatricula = '';
-            this.matricula.codigo = '';
-            this.matricula.nombres = '';
-            this.matricula.apellidos = '';
-            this.matricula.direccion = '';
+            this.matricula.nombre = '';
             this.matricula.fechadematri = '';
-            this.matricula.correo = '';
             this.matricula.carrera = '';
-            this.matricula.municipio = '';
-            this.matricula.departamento = '';
-            this.matricula.telefono = '';
-            this.matricula.dui = '';
-            this.matricula.sexo = '';
             
         },
         modificarMatricula(matricula){
@@ -64,14 +48,22 @@ Vue.component('component-matriculas',{
             this.matricula = matricula;
         },
         listar(){
-            let store = this.abrirStore('tblmatriculas', 'readonly'),
+            let store = this.abrirStore('tblmatricula', 'readonly'),
                 data = store.getAll();
             data.onsuccess = resp=>{
                 this.matriculas = data.result
-                .filter(matricula=>matricula.nombres.toLowerCase().indexOf(this.buscar.toLowerCase())>-1||
+                .filter(matricula=>matricula.nombre.toLowerCase().indexOf(this.buscar.toLowerCase())>-1||
                 matricula.codigo.indexOf(this.buscar)>-1 ||
                 matricula.nombres.indexOf(this.buscar)>-1
               );
+            };
+        },
+        listarAlumnos(){
+            let store = this.abrirStore('tblalumnos', 'readonly'),
+                data = store.getAll();
+            data.onsuccess = resp=>{
+                this.alumnos = data.result
+                
             };
         },
         abrirStore(store, modo){
@@ -79,10 +71,10 @@ Vue.component('component-matriculas',{
             return tx.objectStore(store);
         },
         abrirBD(){
-            let indexDB = indexedDB.open('MatriculasDB',1);
+            let indexDB = indexedDB.open('Sistema_Academico',1);
             indexDB.onupgradeneeded=e=>{
                 let req = e.target.result,
-                    tblmatricula = req.createObjectStore('tblmatriculas', {keyPath:'idMatricula'});
+                    tblmatricula = req.createObjectStore('tblmatricula', {keyPath:'idMatricula'});
                     
 
                 tblmatricula.createIndex('idMatricula', 'idMatricula', {unique:true});
@@ -91,6 +83,7 @@ Vue.component('component-matriculas',{
             indexDB.onsuccess= e=>{
                 this.db = e.target.result;
                 this.listar();
+                this.listarAlumnos();
             };
             indexDB.onerror= e=>{
                 console.error( e );
@@ -112,42 +105,15 @@ Vue.component('component-matriculas',{
 
                             <div class="row p-1">
                                 <div class="col-3 col-md-4">
-                                    <label for="txtCodigoMatricula">Codigo:</label>
+                                    <label for="txtRegAlm">Alumnos Registrados:</label>
                                 </div>
                                 <div class="col-6 col-md-6">
-                                    <input required pattern="[0-9]{3}" 
-                                        title="Ingrese un codigo de la matricula de 3 digitos"
-                                            v-model="matricula.codigo" type="text" class="form-control" name="txtCodigoMatricula" id="txtCodigoMatricula">
+                                <select class="form-control" v-model="matricula.nombre">
+                                <option v-for="alumno in alumnos" :value="alumno.codigo">{{ alumno.codigo }} - {{alumno.nombre}}</option>
+                                </select>
                                 </div>
                             </div>
 
-                            <div class="row p-1">
-                                <div class="col-3 col-md-4">
-                                    <label for="txtNombresMatricula">Nombres:</label>
-                                </div>
-                                <div class="col-6 col-md-6">
-                                    <input required pattern="[A-Za-zÑñáéíóú ]{3,75}"
-                                        v-model="matricula.nombres" type="text" class="form-control" name="txtNombresMatricula" id="txtNombresMatricula">
-                                </div>
-                            </div>
-                            <div class="row p-1">
-                                <div class="col-3 col-md-4">
-                                    <label for="txtApellidosMatricula">Apellidos:</label>
-                                </div>
-                                <div class="col-6 col-md-6">
-                                    <input required pattern="[A-Za-zÑñáéíóú ]{3,75}"
-                                        v-model="matricula.apellidos" type="text" class="form-control" name="txtApellidosMatricula" id="txtApellidosMatricula">
-                                </div>
-                            </div>
-                            <div class="row p-1">
-                                <div class="col-3 col-md-4">
-                                    <label for="txtDireccionMatricula">Direccion:</label>
-                                </div>
-                                <div class="col-6 col-md-6">
-                                    <input required pattern="[A-Za-zÑñáéíóú ]{3,75}"
-                                        v-model="matricula.direccion" type="text" class="form-control" name="txtDireccionMatricula" id="txtDireccionMatricula">
-                                </div>
-                            </div>
 
                             <div class="row p-1">
                                 <div class="col-3 col-md-4">
@@ -186,59 +152,6 @@ Vue.component('component-matriculas',{
                             </div>
                           </div>
 
-                            <div class="row p-1">
-                                <div class="col-3 col-md-4">
-                                    <label for="txtMunicipioMatricula">Municipio:</label>
-                                </div>
-                                <div class="col-6 col-md-6">
-                                    <input required pattern="[A-Za-zÑñáéíóú ]{3,75}"
-                                        v-model="matricula.municipio" type="text" class="form-control" name="txtMunicipioMatricula" id="txtMunicipioMatricula">
-                                </div>
-                            </div>
-
-                            <div class="row p-1">
-                                <div class="col-3 col-md-4">
-                                    <label for="txtNDepartamentoMatricula">Departamento:</label>
-                                </div>
-                                <div class="col-6 col-md-6">
-                                    <input required pattern="[A-Za-zÑñáéíóú ]{3,75}"
-                                        v-model="matricula.departamento" type="text" class="form-control" name="txtDepartamentoMatricula" id="txtDepartamentoMatricula">
-                                </div>
-                            </div>
-
-                            <div class="row p-1">
-                                <div class="col-3 col-md-4">
-                                    <label for="txtTelefonoMatricula">Telefono:</label>
-                                </div>
-                                <div class="col-6 col-md-6">
-                                    <input required pattern="[0-9]{4}-[0-9]{4]"
-                                        v-model="matricula.telefono" type="text" class="form-control" name="txtTelefonoMatricula" id="txtTelefonoMatricula">
-                                </div>
-                            </div>
-
-
-                            <div class="row p-1">
-                                <div class="col-3 col-md-4">
-                                    <label for="txtDuiMatricula">Dui:</label>
-                                </div>
-                                <div class="col-6 col-md-6">
-                                    <input required pattern="[0-9]{7}-[0-9]{1}"
-                                        v-model="matricula.dui" type="text" class="form-control" name="txtDuiMatricula" id="txtDuiMatricula">
-                                </div>
-                            </div>
-
-                            <div class="row p-1">
-                            <div class="col-3 col-md-4">
-                                <label for="txtSexoMatricula">Sexo:</label>
-                            </div>
-                            <div class="col-6 col-md-6">
-                                <select                      
-                                        v-model="matricula.sexo"  class="form-control" name="txtSexoMatricula" id="txtSexoMatricula">
-                                        <option value="Masculino">Hombre</option>
-                                        <option value="Femenino">Mujer</option>    
-                                    </select> 
-                            </div>
-                        </div>
 
                             <div class="row p-1">
                                 <div class="col-3 col-md-6">
@@ -266,36 +179,20 @@ Vue.component('component-matriculas',{
                                         placeholder="Buscar por codigo o nombre"></th>
                                 </tr>
                                 <tr>
-                                    <th>CODIGO</th>
-                                    <th>NOMBRES</th>
-                                    <th>APELLIDOS</th>
-                                    <th>DIRECCION</th>
+                                    <th>Alumno</th>
                                     <th>FECHA DE MATRICULA</th>
                                     <th>CORREO</th>
                                     <th>CARRERA</th>
-                                    <th>MUNICIPIO</th>
-                                    <th>DEPARTAMENTO</th>
-                                    <th>TELEFONO</th>
-                                    <th>DUI</th>
-                                    <th>SEXO</th>
 
 
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr v-for="matricula in matriculas" :key="matricula.idMatricula" @click="modificarMatricula(matricula)" >
-                                    <td>{{ matricula.codigo }}</td>
-                                    <td>{{ matricula.nombres }}</td>
-                                    <td>{{ matricula.apellidos }}</td>
-                                    <td>{{ matricula.direccion }}</td>
+                                    <td>{{ matricula.nombre }}</td>
                                     <td>{{ matricula.fechadematri }}</td>
-                                    <td>{{ matricula.correo }}</td>
+                                    <td>{{ matricula.correo}}</td>
                                     <td>{{ matricula.carrera }}</td>
-                                    <td>{{ matricula.municipio }}</td>
-                                    <td>{{ matricula.departamento }}</td>
-                                    <td>{{ matricula.telefono }}</td>
-                                    <td>{{ matricula.dui }}</td>
-                                    <td>{{ matricula.sexo }}</td>
 
                                     <td><button class="btn btn-danger" @click="eliminarMatricula(matricula)">ELIMINAR</button></td>
                                 </tr>

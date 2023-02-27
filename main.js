@@ -7,7 +7,7 @@ data: {
         alumno      : {mostrar:false},
         materia     : {mostrar:false},
         matricula   : {mostrar:false},
-        inscribir : {mostrar:true},
+        inscribir : {mostrar:false},
     }
 
 },
@@ -20,15 +20,17 @@ methods:{
         }
         this.forms[form].mostrar = !this.forms[form].mostrar;
         this.$refs[form].listar();
+        this.$refs[form].listarAlumnos();
     },
     
     abrirBD(){
-        let indexDB = indexedDB.open('db_sistema_academico',1);
+        let indexDB = indexedDB.open('Sistema_Academico',1);
         indexDB.onupgradeneeded=e=>{
             let req = e.target.result,
                 tbldocente = req.createObjectStore('tbldocentes', {keyPath:'idDocente'}),
                 tblalumno = req.createObjectStore('tblalumnos',{keyPath:'idAlumno'}),
                 tblmateria = req.createObjectStore('tblmaterias',{keyPath:'idMateria'});
+                tblmatricula = req.createObjectStore('tblmatricula',{keyPath:'idMatricula'});
                 tblinscripcion = req.createObjectStore('tblinscritos',{keyPath:'idInscrito'});
 
             

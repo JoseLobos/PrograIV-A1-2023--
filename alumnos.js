@@ -71,7 +71,7 @@ Vue.component('component-alumnos',{
             return tx.objectStore(store);
         },
         abrirBD(){
-            let indexDB = indexedDB.open('AlumnosDB',1);
+            let indexDB = indexedDB.open('Sistema_Academico',1);
             indexDB.onupgradeneeded=e=>{
                 let req = e.target.result,
                     tblalumno = req.createObjectStore('tblalumnos', {keyPath:'idAlumno'});
@@ -124,7 +124,9 @@ Vue.component('component-alumnos',{
                                         v-model="alumno.nombre" type="text" class="form-control" name="txtNombreAlumno" id="txtNombreAlumno">
                                 </div>
                             </div>
-
+                            <select class="form-control" v-model="alumno.nombre">
+                            <option v-for="alumno in alumnos" :value="alumno.idAlumno">{{ alumno.codigo }} - {{alumno.nombre}}</option>
+                        </select>
 
                             <div class="row p-1">
                                 <div class="col-3 col-md-4">
@@ -186,7 +188,7 @@ Vue.component('component-alumnos',{
                                 <label for="txtDuiAlumno">Dui:</label>
                             </div>
                             <div class="col-6 col-md-6">
-                                <input required pattern="[0-9]{7}-[0-9]{1}"
+                                <input required 
                                     v-model="alumno.dui" type="text" class="form-control" name="txtDuiAlumno" id="txtDuiAlumno">
                             </div>
                         </div>
@@ -221,6 +223,7 @@ Vue.component('component-alumnos',{
                 </div>
             </div>
             <div class="col-12 col-md-12">
+            
                 <div class="card">
                     <div class="card-header">LISTADO DE ALUMNOS</div>
                     <div class="card-body">
@@ -250,7 +253,7 @@ Vue.component('component-alumnos',{
                             <tbody>
                                 <tr v-for="alumno in alumnos" :key="alumno.idAlumno" @click="modificarAlumno(alumno)" >
                                     <td>{{ alumno.codigo }}</td>
-                                    <td>{{ alumno.nombre }}</td>
+                                    <td>{{ alumno.codigo }} - {{alumno.nombre}}</td>
                                     <td>{{ alumno.fecha }}</td>
                                     <td>{{ alumno.direccion }}</td>
                                     <td>{{ alumno.municipio }}</td>
