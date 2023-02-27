@@ -21,6 +21,7 @@ methods:{
         this.forms[form].mostrar = !this.forms[form].mostrar;
         this.$refs[form].listar();
         this.$refs[form].listarAlumnos();
+        this.$refs[form].listarMateria();
     },
     
     abrirBD(){
